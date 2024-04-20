@@ -61,6 +61,8 @@
 
 `docker compose up -d`
 
+Abre tu navegador en el navegador: http://localhost:8090
+
 ## 6. Aplicación en node conectandose a MongoDB
 
 - Creamos un contenedor de mongo
