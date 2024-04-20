@@ -22,9 +22,9 @@
 
 `docker create -p 8080:80 --name ejemplo1_nginx_1 nginx`
 
-`docker logs ejemplo1_nginx_2` // para ver los logs
+`docker logs ejemplo1_nginx_1` // para ver los logs
 
-`docker logs --follow ejemplo1_nginx_2` // para ver los logs en primer plano
+`docker logs --follow ejemplo1_nginx_1` // para ver los logs en primer plano
 
 
 `docker run nginx` // un comando para hacer todo en uno. 1. Verifica si la imagen existe y si no lo descarga, 2. Crea el contenedor, 3. Inicia el contenedor
