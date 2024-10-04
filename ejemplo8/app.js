@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 // const mongoURI = "mongodb+srv://marcelo:By7hhJzf2f4OqoTO@clusterunivalle.unxia72.mongodb.net/library?retryWrites=true&w=majority&appName=ClusterUnivalle";
 // const mongoURI = "mongodb://marcelo:secret@localhost:27017";
-const mongoURI = "mongodb://marcelo:secret@monguito:27017";
+const mongoURI = "mongodb://marcelo:secret@db:27017";
 app.use(express.json());
 
 app.get('/authors', async (req, res) => {
@@ -25,7 +25,7 @@ app.get('/authors', async (req, res) => {
         res.json(authors);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error en el Servidor");
+        res.status(500).send("Errores en el Servidor");
     }
 });
 

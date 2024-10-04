@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   node:
     build:
@@ -7,11 +6,11 @@ services:
     ports:
       - "3000:3000"
     links:
-      - monguito
+      - db
     volumes:
       - .:/home/app
-  monguito:
-    image: mongo
+  db:
+    image: amd64/mongo
     ports:
       - "27017:27017"
     environment:

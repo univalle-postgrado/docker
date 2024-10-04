@@ -1,12 +1,12 @@
 services:
-  node:
+  app:
     build: .
     ports:
       - "3000:3000"
     links:
-      - monguito
-  monguito:
-    image: mongo
+      - db
+  db:
+    image: amd64/mongo
     ports:
       - "27017:27017"
     environment:

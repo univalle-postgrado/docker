@@ -51,7 +51,7 @@
 
 `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ejemplo3_3`
 
-`docker run -d -p 8080:80 --rm --name ejemplo3_0 -v $(pwd)/default.conf:/etc/nginx/conf.d/nginx.conf nginx:alpine`
+`docker run -d -p 8080:80 --rm --name ejemplo3_0 -v $(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf nginx:alpine`
 
 ## 4. Crear un balanceador con contenedores con docker compose
 
@@ -65,13 +65,13 @@ Abre tu navegador en el navegador: http://localhost:8090
 
 ## 6. Aplicación en node conectandose a MongoDB
 
-- Creamos un contenedor de mongo
+- Creamos un contenedor de mongo y lo iniciamos
 
-`docker create -p27017:27017 --name ejemplo6_mongodb -e MONGO_INITDB_ROOT_USERNAME=marcelo -e MONGO_INITDB_ROOT_PASSWORD=secret mongo`
+`docker create -p 27017:27017 --name ejemplo6_mongodb -e MONGO_INITDB_ROOT_USERNAME=marcelo -e MONGO_INITDB_ROOT_PASSWORD=secret amd64/mongo`
 
 `docker start ejemplo6_mongodb`
 
-// ahora para que los contenedores se vean entre si y no sea necesario hacer portmapping de mongo
+// Si queremos que los contenedores se vean entre si y no sea necesario hacer portmapping de mongo
 
 `docker network ls`
 
@@ -81,9 +81,11 @@ Abre tu navegador en el navegador: http://localhost:8090
 
 `docker images`
 
-`docker create -p3000:3000 --name ejemplo6_node --network ejemplo6_network ejemplo6_node:v1`
+`docker create -p 3000:3000 --name ejemplo6_node --network ejemplo6_network ejemplo6_node:v1`
 
-`docker run -p27017:27017 -d --name ejemplo6_mongodb -e MONGO_INITDB_ROOT_USERNAME=marcelo -e MONGO_INITDB_ROOT_PASSWORD=secret --network ejemplo6_network mongo`
+`docker run -p 27017:27017 -d --name ejemplo6_mongodb -e MONGO_INITDB_ROOT_USERNAME=marcelo -e MONGO_INITDB_ROOT_PASSWORD=secret --network ejemplo6_network amd64/mongo`
+
+`docker start ejemplo6_node`
 
 `docker logs ejemplo6_node`
 
@@ -104,3 +106,22 @@ Abre tu navegador en el navegador: http://localhost:8090
 
 `docker compose -f docker-compose-dev.yml up -d`
 
+`docker logs --follow ejemplo8-node-1`
+
+## 9. Gestor Mongo Express para administrar BDs Mongo
+
+`docker compose up -d`
+
+`docker compose down -v`
+
+## 10. Gestor adminer para administrar BDs PostgreSQL
+
+`docker compose up -d`
+
+`docker compose down -v`
+
+## 10. Ejemplo de conexión de expressjs con PostgreSQL con script de la estructura de la BD
+
+`docker compose up -d`
+
+`docker compose down -v`
